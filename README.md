@@ -1,20 +1,12 @@
 <h1 align="center">🌉 RasaSetu – The Bridge of Emotions</h1>
 
-<p align="center">
-  <img src="https://media.giphy.com/media/3ohs4BSacFKI7A717y/giphy.gif" width="180" alt="Calm Emotion"/>
-  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="180" alt="Happy Emotion"/>
-  <img src="https://media.giphy.com/media/3o6ZsYM3YVh3W9yJri/giphy.gif" width="180" alt="Sad Emotion"/>
-  <img src="https://media.giphy.com/media/l0MYEqEzwMWFCg8rm/giphy.gif" width="180" alt="Angry Emotion"/>
-  <img src="https://media.giphy.com/media/xT0GqeSlGSRQut04ze/giphy.gif" width="180" alt="Anxious Emotion"/>
-</p>
-
 <h3 align="center"><em>Experience your emotions. Reflect. Heal. With content that truly connects.</em></h3>
 
 <hr/>
 
 <h2>🧠 Problem Statement</h2>
 <blockquote>
-Design a platform that recommends content (music, short reads, quotes, videos) based on the user's emotional state using simple user input and sentiment analysis, with options for journaling and self-expression as emotional therapy.
+Design a platform that recommends content (music, Mood Freshner, quotes, videos) based on the user's emotional state using simple user input and sentiment analysis, with options for journaling and self-expression as emotional therapy.
 </blockquote>
 
 <h2>✨ Core Features</h2>
@@ -29,14 +21,67 @@ Design a platform that recommends content (music, short reads, quotes, videos) b
   <tr><td>💡 Uplift Mode</td><td>Push notifications for motivational quotes (Pro Feature)</td></tr>
 </table>
 
-<h2>💸 Subscription Model</h2>
+<h2>💸 Subscription Model (Powered by Stripe)</h2>
 
 <table>
-  <tr><th>Tier</th><th>Includes</th></tr>
-  <tr><td>Free</td><td>2 mood uses/day, basic journaling</td></tr>
-  <tr><td>Pro ₹49/month</td><td>Unlimited moods, journal analytics, “Uplift” Mode</td></tr>
-  <tr><td>Pro+ ₹99/month</td><td>Custom mood packs, long-term mood trends, export journal</td></tr>
+  <tr>
+    <th>Plan</th>
+    <th>Price</th>
+    <th>Features</th>
+    <th>Stripe Integration Flow</th>
+  </tr>
+
+  <tr>
+    <td><b>Free</b></td>
+    <td>₹0 /month</td>
+    <td>
+      • Access to 2 moods/day<br>
+      • Basic journaling<br>
+      • Limited content feed
+    </td>
+    <td>
+      • No payment required<br>
+      • Registered via Firebase Auth<br>
+      • Can upgrade to paid plan anytime
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Pro</b></td>
+    <td>₹49 /month</td>
+    <td>
+      • Unlimited mood entries<br>
+      • Mood-based music/videos<br>
+      • Journaling analytics<br>
+      • “Uplift” mode for push motivation
+    </td>
+    <td>
+      • Stripe Checkout (one-click)<br>
+      • Auto-billing every 30 days<br>
+      • Webhook to update user tier in Firestore<br>
+      • Cancel anytime via Stripe Billing Portal
+    </td>
+  </tr>
+
+  <tr>
+    <td><b>Pro+</b></td>
+    <td>₹99 /month</td>
+    <td>
+      • All Pro features<br>
+      • Custom mood packs (festive/spiritual)<br>
+      • Long-term emotional insights<br>
+      • Export journal as PDF<br>
+      • Early access to beta features
+    </td>
+    <td>
+      • Stripe Checkout with dynamic pricing<br>
+      • Webhook auto-syncs access permissions<br>
+      • Prompts upgrade UX inside app<br>
+      • Billing emails sent via Stripe
+    </td>
+  </tr>
 </table>
+
 
 <h2>🛠️ Tech Stack</h2>
 <ul>
@@ -47,25 +92,33 @@ Design a platform that recommends content (music, short reads, quotes, videos) b
   <li><b>Deployment:</b> Netlify / Vercel</li>
 </ul>
 
-<h2>🌟 Why RasaSetu?</h2>
+<h2>🌟 Why <span style="color:#A52A2A;"><b>RasaSetu</b></span>?</h2>
+
 <ul>
-  <li>Deep cultural connection through the concept of <b>Rasa (रस)</b> – the essence of emotion</li>
-  <li>Clean, soothing UI for emotionally aware content delivery</li>
-  <li>Low-code, scalable MVP perfect for hackathons or pilot apps</li>
-  <li>Great for schools, workplaces, or personal wellness</li>
+  <li>🎨 <b>Rooted in Bharatiya Culture</b> – Inspired by the ancient Indian aesthetic philosophy of <b>Rasa (रस)</b>, connecting emotion and art</li>
+  
+  <li>🧘 <b>Emotion-Centric UI</b> – Calm, meditative colors and culturally mindful layouts for inner peace and clarity</li>
+  
+  <li>🚀 <b>Hackathon-Ready MVP</b> – Low-code, scalable, and deployable in under 8 hours with Firebase + HTML stack</li>
+  
+  <li>🏫 <b>Universal Applications</b> – Ideal for Indian schools, mental wellness drives, yoga communities, and corporate HR tools</li>
+  
+  <li>📿 <b>Optional Spiritual Mode</b> – Optionally integrates mantras, shlokas, and breathing timers for deeper reflection</li>
 </ul>
 
-<h2>📸 UI Inspiration (Concept GIF)</h2>
-<p align="center">
-  <img src="https://media.giphy.com/media/xT0BKyhK85oD9LyWvO/giphy.gif" width="300" />
-</p>
 
-<h2>📍 Future Scope</h2>
-<ul>
-  <li>Voice-based emotion input with speech analysis</li>
-  <li>Daily emotional wellness streaks & insights</li>
-  <li>Integration with Spotify/YouTube APIs</li>
-  <li>Support for Indian languages for journaling</li>
+<h2 style="color:#FF5733;">📍 Future Scope</h2>
+<ul style="font-size: 16px;">
+  <li><span style="color:#4CAF50;">🎤 Voice-Based Emotion Input</span> – Integrating speech analysis for more accurate emotional detection</li>
+  
+  <li><span style="color:#00BCD4;">📊 Daily Emotional Wellness Streaks</span> – Providing personalized insights based on user data and emotional patterns</li>
+  
+  <li><span style="color:#FF9800;">🎶 Integration with Spotify/YouTube APIs</span> – Expanding content offering with curated music and videos for emotional well-being</li>
+  
+  <li><span style="color:#9C27B0;">🇮🇳 Support for Indian Languages</span> – Enabling journaling and emotional input in regional languages like Hindi, Marathi, Tamil, etc.</li>
+  
+  <li><span style="color:#3F51B5;">🤝 Collaborations & MOUs</span> – Forming partnerships with leading Indian wellness startups such as <b>Mindhouse</b>, <b>InnerHour</b>, and <b>Baazi Games</b> to bring culturally rich emotional wellness tools to a wider audience</li>
 </ul>
+
 
 <h2 align="center">🚀 Let your emotions flow with <strong>RasaSetu</strong></h2>
