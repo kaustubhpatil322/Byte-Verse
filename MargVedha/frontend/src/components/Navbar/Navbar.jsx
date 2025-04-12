@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
@@ -13,20 +14,19 @@ const Navbar = () => {
       <div className="navbar-logo">RasaSetu</div>
 
       <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
-        <li><a href="#mood-selector" onClick={toggleMenu}>Mood Selector</a></li>
-        <li><a href="#journal" onClick={toggleMenu}>Journal</a></li>
-        <li><a href="#content-feed" onClick={toggleMenu}>Feed</a></li>
-        <li><a href="#express" onClick={toggleMenu}>Express Mode</a></li>
-        <li><a href="#uplift" onClick={toggleMenu}>Uplift</a></li>
+        <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
+        <li><Link to="/" onClick={toggleMenu}>Mood Selector</Link></li>
+        <li><Link to="/" onClick={toggleMenu}>Express Mode</Link></li>
+        <li><Link to="/" onClick={toggleMenu}>Journal</Link></li>
         <div className="mobile-auth">
-          <button className="btn login">Login</button>
-          <button className="btn signup">Sign Up</button>
+          <Link to="/login" className="btn login">Login</Link>
+          <Link to="/signup" className="btn signup">Sign Up</Link>
         </div>
       </div>
 
       <div className="navbar-auth desktop-auth">
-        <button className="btn login">Login</button>
-        <button className="btn signup">Sign Up</button>
+        <Link to="/login" className="btn login">Login</Link>
+        <Link to="/signup" className="btn signup">Sign Up</Link>
       </div>
 
       <div className={`hamburger ${isMobileMenuOpen ? 'open' : ''}`} onClick={toggleMenu}>

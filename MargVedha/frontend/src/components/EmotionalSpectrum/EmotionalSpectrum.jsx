@@ -46,7 +46,7 @@ const EmotionalSpectrum = () => {
 
   return (
     <div className="container">
-      <h1 className="title">MoodMuse | Complete Emotional Palette</h1>
+      <h1 className="title">RasaSetu | Complete Emotional Palette</h1>
 
       <div className="media-toggle">
         <label>

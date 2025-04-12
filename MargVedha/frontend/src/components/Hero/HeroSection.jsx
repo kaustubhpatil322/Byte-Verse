@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section className="hero">
       <div className="hero-overlay">
         <div className="hero-content">
-          <h1 className="hero-title">Welcome to MoodMuse</h1>
+          <h1 className="hero-title">Welcome to RasaSetu</h1>
           <p className="hero-subtitle">
             Your personal guide to emotional clarity and content therapy. Track your feelings, reflect deeply, and get content that heals.
           </p>

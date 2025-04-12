@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Signup.css';
 
 const Signup = () => {
@@ -88,14 +89,14 @@ const Signup = () => {
             required
           />
           <label>
-            I agree to the <a href="/privacy">Privacy Policy</a> and <a href="/terms">Terms & Conditions</a>
+            I agree to the <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms & Conditions</Link>
           </label>
         </div>
 
         <button type="submit">Sign Up</button>
 
         <p className="login-link">
-          Already have an account? <a href="/login">Log in</a>
+          Already have an account? <Link to="/login">Log in</Link>
         </p>
       </form>
     </div>
