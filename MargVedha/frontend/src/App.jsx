@@ -7,6 +7,7 @@ import HeroSection from './components/Hero/HeroSection';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import ExpressMode from './components/ExpressMode/ExpressMode';
+import MoodSelector from './components/MoodSelector/MoodSelector'; // ✅ NEW IMPORT
 
 const App = () => {
   return (
@@ -15,17 +16,18 @@ const App = () => {
         <Navbar />
         <br />
         <Routes>
-          {/* Home page with Hero Section and Emotional Spectrum */}
+          {/* Home Page */}
           <Route path="/" element={<><HeroSection /> <br /> <EmotionalSpectrum /></>} />
 
-          {/* Express Mode Page */}
-          <Route path="/express-mode" element={<ExpressMode />} />
-
-          {/* Login Page */}
+          {/* Login & Signup */}
           <Route path="/login" element={<Login />} />
-
-          {/* Signup Page */}
           <Route path="/signup" element={<Signup />} />
+
+          {/* Mood Selector Page */}
+          <Route path="/mood" element={<MoodSelector />} /> {/* ✅ NEW ROUTE */}
+
+          {/* Express Mode Page */}
+          <Route path="/express-mode" element={<ExpressMode />} /> {/* ✅ MOVED FROM OUTSIDE */}
         </Routes>
         <br />
         <Footer />

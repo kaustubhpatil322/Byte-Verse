@@ -11,15 +11,14 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <Link to="/" onClick={toggleMenu}>
-        <div className="navbar-logo">RasaSetu</div>
-      </Link>
+      <Link to="/" onClick={toggleMenu}><div className="navbar-logo">RasaSetu</div></Link>
 
       <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
         <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
-        <li><Link to="/express-mode" onClick={toggleMenu}>Express Mode</Link></li> {/* Add Express Mode link */}
-        <li><Link to="/" onClick={toggleMenu}>Mood Selector</Link></li>
+        <li><Link to="/mood" onClick={toggleMenu}>Mood Selector</Link></li> {/* ✅ UPDATED */}
+        <li><Link to="/express-mode" onClick={toggleMenu}>Express Mode</Link></li>   {/* ✅ UPDATED */}
         <li><Link to="/" onClick={toggleMenu}>Journal</Link></li>
+
         <div className="mobile-auth">
           <Link to="/login" className="btn login">Login</Link>
           <Link to="/signup" className="btn signup">Sign Up</Link>
