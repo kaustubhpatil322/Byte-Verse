@@ -148,6 +148,3 @@ Design a platform that recommends content (music, Mood Freshner, quotes, videos)
   
   <li><span style="color:#3F51B5;">🤝 Collaborations & MOUs</span> – Forming partnerships with leading Indian wellness startups such as <b>Mindhouse</b>, <b>InnerHour</b>, and <b>Baazi Games</b> to bring culturally rich emotional wellness tools to a wider audience</li>
 </ul>
-
-
-<h2 align="center">🚀 Let your emotions flow with <strong>RasaSetu</strong></h2>
