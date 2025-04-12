@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './EmotionalSpectrum.css';
+import { auth } from '../../firebase';  // Firebase auth
 
 const categories = {
   Happiness: [
@@ -35,6 +36,18 @@ const EmotionalSpectrum = () => {
   const [uploadType, setUploadType] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);  // Set user when logged in
+      } else {
+        setUser(null);  // Clear user when logged out
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const hasUploadedMedia = uploadType === 'image' ? !!imageFile : uploadType === 'video' ? !!videoFile : false;
 
@@ -44,10 +57,34 @@ const EmotionalSpectrum = () => {
     }
   };
 
+  // Render image preview
+  const renderImagePreview = () => {
+    if (imageFile) {
+      return <img src={URL.createObjectURL(imageFile)} alt="Preview" className="media-preview" />;
+    }
+    return null;
+  };
+
+  // Render video preview
+  const renderVideoPreview = () => {
+    if (videoFile) {
+      return <video controls className="media-preview"><source src={URL.createObjectURL(videoFile)} type="video/mp4" /></video>;
+    }
+    return null;
+  };
+
   return (
     <div className="container">
       <h1 className="title">RasaSetu | Complete Emotional Palette</h1>
 
+      {/* Conditional message if user is not logged in */}
+      {!user && (
+        <div className="login-prompt">
+          <p>Please log in to access the emotional spectrum.</p>
+        </div>
+      )}
+
+      {/* Media Upload Toggle */}
       <div className="media-toggle">
         <label>
           <input
@@ -59,6 +96,7 @@ const EmotionalSpectrum = () => {
               setUploadType('image');
               setVideoFile(null); // clear other
             }}
+            disabled={!user}
           />
           Upload Image
         </label>
@@ -72,11 +110,13 @@ const EmotionalSpectrum = () => {
               setUploadType('video');
               setImageFile(null); // clear other
             }}
+            disabled={!user}
           />
           Upload Video
         </label>
       </div>
 
+      {/* Image Upload Section */}
       {uploadType === 'image' && (
         <div className="media-upload">
           <label>
@@ -85,11 +125,14 @@ const EmotionalSpectrum = () => {
               type="file"
               accept="image/*"
               onChange={(e) => setImageFile(e.target.files[0])}
+              disabled={!user}
             />
           </label>
+          {renderImagePreview()}
         </div>
       )}
 
+      {/* Video Upload Section */}
       {uploadType === 'video' && (
         <div className="media-upload">
           <label>
@@ -98,28 +141,33 @@ const EmotionalSpectrum = () => {
               type="file"
               accept="video/*"
               onChange={(e) => setVideoFile(e.target.files[0])}
+              disabled={!user}
             />
           </label>
+          {renderVideoPreview()}
         </div>
       )}
 
-      {!hasUploadedMedia && (
+      {/* Upload warning if no media is uploaded */}
+      {!hasUploadedMedia && user && (
         <p className="upload-warning">⚠️ Please upload an image or video to proceed with selecting emotions.</p>
       )}
 
+      {/* Category Tabs */}
       <div className="tabs">
         {Object.keys(categories).map((cat) => (
           <button
             key={cat}
             className={`tab ${cat === activeCategory ? 'active' : ''}`}
             onClick={() => hasUploadedMedia && setActiveCategory(cat)}
-            disabled={!hasUploadedMedia}
+            disabled={!hasUploadedMedia || !user}
           >
             {cat}
           </button>
         ))}
       </div>
 
+      {/* Emotion Grid */}
       <div className="grid">
         {categories[activeCategory].map((emotion) => (
           <div
@@ -128,6 +176,7 @@ const EmotionalSpectrum = () => {
               !hasUploadedMedia ? 'disabled' : ''
             }`}
             onClick={() => handleEmotionSelect(emotion)}
+            disabled={!hasUploadedMedia || !user}
           >
             <i className={`${emotion.icon} icon`}></i>
             <span>{emotion.name}</span>
@@ -135,16 +184,17 @@ const EmotionalSpectrum = () => {
         ))}
       </div>
 
+      {/* Journal Entry */}
       <div className="journal">
         <textarea
           placeholder="Describe your mood in your own words..."
           value={journalEntry}
           onChange={(e) => setJournalEntry(e.target.value)}
-          disabled={!hasUploadedMedia}
+          disabled={!user || !hasUploadedMedia}
         />
         <button
           className="submit"
-          disabled={!hasUploadedMedia}
+          disabled={!user || !hasUploadedMedia || !selectedEmotion}
           onClick={() => {
             console.log('Selected Emotion:', selectedEmotion?.name);
             console.log('Journal Entry:', journalEntry);
