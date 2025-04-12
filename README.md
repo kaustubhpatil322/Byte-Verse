@@ -94,11 +94,11 @@ Design a platform that recommends content (music, Mood Freshner, quotes, videos)
 
 <h2>🛠️ Tech Stack</h2>
 <ul>
-  <li><b>Frontend:</b> HTML/CSS/JS or React (for animations)</li>
-  <li><b>Backend:</b> Firebase / Node.js + Express</li>
-  <li><b>Sentiment Analysis:</b> Python Flask using TextBlob or VADER</li>
-  <li><b>Database:</b> Firebase Firestore</li>
-  <li><b>Deployment:</b> Netlify / Vercel</li>
+  <li><b>Frontend:</b> React(Vite)</li>
+  <li><b>Backend:</b> Node.js</li>
+  <li><b>ML:</b> Python, Flask,Tensorflow,deepface,gradio,opencv,numpy,torch</li>
+  <li><b>Database:</b> Firebase</li>
+  <li><b>Deployment:</b>Vercel</li>
 </ul>
 
 <h2>🌟 Why <span style="color:#A52A2A;"><b>RasaSetu</b></span>?</h2>
