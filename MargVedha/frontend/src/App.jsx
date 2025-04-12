@@ -9,6 +9,7 @@ import Signup from './components/Signup/Signup';
 import ExpressMode from './components/ExpressMode/ExpressMode';
 import MoodSelector from './components/MoodSelector/MoodSelector'; 
 import Journal from './components/Journal/Journal';
+import Profile from './components/Profile/Profile'; // ✅ NEW: Import Profile
 
 const App = () => {
   return (
@@ -25,12 +26,16 @@ const App = () => {
           <Route path="/signup" element={<Signup />} />
 
           {/* Mood Selector Page */}
-          <Route path="/mood" element={<MoodSelector />} /> {/* ✅ NEW ROUTE */}
+          <Route path="/mood" element={<MoodSelector />} />
 
           {/* Express Mode Page */}
-          <Route path="/express-mode" element={<ExpressMode />} /> {/* ✅ MOVED FROM OUTSIDE */}
+          <Route path="/express-mode" element={<ExpressMode />} />
 
+          {/* Journal Page */}
           <Route path="/journal" element={<Journal />} />
+
+          {/* ✅ Profile Page Route */}
+          <Route path="/profile" element={<Profile />} />
         </Routes>
         <br />
         <Footer />
