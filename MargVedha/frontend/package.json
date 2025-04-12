@@ -4,12 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-  "dev": "vite",
-  "build": "vite build",
-  "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist -r https://github.com/kaustubhpatil322/Byte-Verse.git"
- },
+    "dev": "vite",
+    "build": "vite build",
+    "predeploy": "npm run build"
+  },
   "dependencies": {
     "firebase": "^11.6.0",
     "framer-motion": "^12.6.5",
