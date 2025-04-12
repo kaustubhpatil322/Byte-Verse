@@ -264,4 +264,15 @@
   .navbar-links .disabled:hover {
     opacity: 0.6;  /* Optional: Remove hover effect on disabled links */
   }
-      
+  .dropdown-link {
+    display: block;
+    text-decoration: none;
+    color: #333;
+    margin-bottom: 10px;
+    transition: color 0.2s ease;
+  }
+  
+  .dropdown-link:hover {
+    color: #0077cc;
+  }
+        

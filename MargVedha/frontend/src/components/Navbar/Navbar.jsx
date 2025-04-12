@@ -62,6 +62,13 @@ const Navbar = () => {
             {/* Dropdown Menu */}
             <div className="dropdown-content">
               <p>{user.displayName || 'User'}</p>
+
+              {/* Profile Link */}
+              <Link to="/profile" className="dropdown-link" onClick={toggleMenu}>
+                Profile
+              </Link>
+
+              {/* Logout */}
               <button onClick={handleLogout} aria-label="Logout">Logout</button>
             </div>
           </div>
