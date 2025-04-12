@@ -63,8 +63,8 @@ const ExpressMode = () => {
           <h3>Guided Breathing and Relaxation</h3>
           <p>Check out these resources to help you relax:</p>
           <ul>
-            <li><a href="https://www.youtube.com/watch?v=E3Gz4OGtXsk" target="_blank" rel="noopener noreferrer">Guided Breathing Video</a></li>
-            <li><a href="https://open.spotify.com/playlist/37i9dQZF1DXc2PCt6X1pRm" target="_blank" rel="noopener noreferrer">Relaxing Music Playlist</a></li>
+            <li><a href="https://www.youtube.com/watch?v=I77hh5I69gA" target="_blank" rel="noopener noreferrer">Guided Breathing Video</a></li>
+            <li><a href="https://open.spotify.com/playlist/6uaZZTHVsbAWGDR9eNhuos" target="_blank" rel="noopener noreferrer">Relaxing Music Playlist</a></li>
           </ul>
         </div>
       </div>
