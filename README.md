@@ -4,6 +4,8 @@
 
 <hr/>
 
+  <h3 align="center"><em>For Now Three Emotions - Happy😀, Sad 😔 and Angry 😤</em></h3>
+
 <h2>🧠 Problem Statement</h2>
 <blockquote>
 Design a platform that recommends content (music, Mood Freshner, quotes, videos) based on the user's emotional state using simple user input and sentiment analysis, with options for journaling and self-expression as emotional therapy.
