@@ -1,10 +1,9 @@
-// vite.config.js
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 
 export default defineConfig({
-  base: '/emotion-detector-ui/',  // <-- ADD THIS LINE
+  base: '/Byte-Verse/', // ✅ GitHub Pages needs this
   plugins: [react()],
   resolve: {
     alias: {
