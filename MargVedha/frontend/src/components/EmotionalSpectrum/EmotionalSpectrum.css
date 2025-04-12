@@ -103,4 +103,61 @@
   .submit:hover {
     background-color: #f0b000;
   }
+  .media-upload {
+    border: 2px dashed #ffd369;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    background-color: #2e2e40;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   
+  .media-upload label {
+    color: #f0f0f0;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .media-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    color: #f0f0f0;
+  }
+  
+  .media-toggle input {
+    margin-right: 0.5rem;
+  }
+  
+  .media-upload {
+    border: 2px dashed #ffd369;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    border-radius: 12px;
+    background-color: #2e2e40;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .media-upload label {
+    color: #f0f0f0;
+    font-weight: bold;
+  }
+  .upload-warning {
+    text-align: center;
+    color: #ff8a65;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  
+  .card.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+      

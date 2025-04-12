@@ -1,509 +1,223 @@
 <!-- This file is made to preview components before adding it to the main code. There is no role of this file in webpage development -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoodMuse | Complete Emotional Palette</title>
+    <title>Registration Form</title>
     <style>
-        :root {
-            --gold: #D4AF37;
-            --platinum: #E5E4E2;
-            --velvet: #6D435A;
-            --sapphire: #0F52BA;
-            --emerald: #50C878;
-            --ruby: #E0115F;
-            --text: #2C2C2C;
-            --bg: #FAF9F6;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Playfair Display', serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background: var(--bg);
-            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 2rem;
-            background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.9) 0%, rgba(250,249,246,0.9) 90%);
+            padding: 20px;
         }
         
-        .main-container {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.08);
-            max-width: 1000px;
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             width: 100%;
-            padding: 4rem;
+            max-width: 500px;
+            padding: 30px;
+        }
+        
+        .header {
             text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 30px;
         }
         
-        h1 {
-            color: var(--text);
-            margin-bottom: 1rem;
-            font-size: 2.5rem;
-            font-weight: 700;
-            position: relative;
-            display: inline-block;
+        .header h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 10px;
         }
         
-        h1::after {
-            content: "";
-            position: absolute;
-            bottom: -8px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--gold), var(--emerald));
-        }
-        
-        .subtitle {
+        .header p {
             color: #666;
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-            font-family: 'Montserrat', sans-serif;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+            font-size: 14px;
         }
         
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
+        .form-group {
+            margin-bottom: 20px;
         }
         
-        .category-tab {
-            padding: 0.6rem 1.5rem;
-            border-radius: 50px;
-            background: white;
-            border: 1px solid rgba(0,0,0,0.1);
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-size: 14px;
+            font-weight: 500;
         }
         
-        .category-tab.active {
-            background: var(--gold);
-            color: white;
-            border-color: var(--gold);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-        }
-        
-        .category-tab:hover:not(.active) {
-            border-color: var(--gold);
-        }
-        
-        .emotion-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 1.2rem;
-            margin: 2rem 0;
-        }
-        
-        .emotion-card {
-            background: white;
-            border-radius: 14px;
-            padding: 1.8rem 1rem;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        
-        .emotion-card:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.08);
-        }
-        
-        .emotion-card.selected {
-            border: 1px solid var(--gold);
-            background: linear-gradient(135deg, white 0%, #FFFDF5 100%);
-            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.15);
-        }
-        
-        .emotion-card.selected::after {
-            content: "✓";
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            width: 18px;
-            height: 18px;
-            background: var(--gold);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .emotion-icon {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            transition: all 0.4s ease;
-        }
-        
-        .emotion-card:hover .emotion-icon {
-            transform: scale(1.15);
-        }
-        
-        .emotion-name {
-            font-weight: 600;
-            font-size: 0.95rem;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text);
-        }
-        
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 3rem 0;
-            color: #999;
-            font-family: 'Montserrat', sans-serif;
-        }
-        
-        .divider::before, .divider::after {
-            content: "";
-            flex: 1;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            margin: 0 1.5rem;
-        }
-        
-        .journal-entry {
-            background: linear-gradient(135deg, rgba(250,249,246,0.8) 0%, rgba(255,255,255,0.8) 100%);
-            border-radius: 18px;
-            padding: 2.5rem;
-            margin: 3rem auto 0;
-            max-width: 600px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-        }
-        
-        .journal-entry h3 {
-            margin-bottom: 1.5rem;
-            color: var(--text);
-            font-size: 1.3rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .journal-entry h3::after {
-            content: "";
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 40px;
-            height: 2px;
-            background: var(--gold);
-        }
-        
-        textarea {
+        .form-group input, .form-group select {
             width: 100%;
-            border: 1px solid rgba(0,0,0,0.1);
-            border-radius: 12px;
-            padding: 1.5rem;
-            min-height: 120px;
-            resize: none;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            font-family: 'Montserrat', sans-serif;
-            background: rgba(255,255,255,0.8);
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: all 0.3s;
         }
         
-        textarea:focus {
+        .form-group input:focus, .form-group select:focus {
+            border-color: #4a90e2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
             outline: none;
-            border-color: var(--gold);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
-            background: white;
         }
         
-        .btn {
-            background: linear-gradient(135deg, var(--gold) 0%, #E5C100 100%);
-            color: white;
+        .name-fields {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .name-fields .form-group {
+            flex: 1;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .terms input {
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+        
+        .terms label {
+            color: #666;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        
+        .terms a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        
+        .terms a:hover {
+            text-decoration: underline;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(to right, #4a90e2, #63b3ed);
             border: none;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-            font-size: 1rem;
-            display: inline-block;
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 0.5px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s;
         }
         
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        button:hover {
+            background: linear-gradient(to right, #3a7bc8, #4a90e2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
         }
         
-        @media (max-width: 900px) {
-            .emotion-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
         }
         
-        @media (max-width: 768px) {
-            .main-container {
-                padding: 3rem 2rem;
-            }
-            
-            .emotion-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .emotion-card {
-                padding: 1.5rem 0.5rem;
-            }
-            
-            .journal-entry {
-                padding: 2rem 1.5rem;
-            }
+        .login-link a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
         }
         
         @media (max-width: 480px) {
-            .main-container {
-                padding: 2rem 1.5rem;
-                border-radius: 16px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .emotion-icon {
-                font-size: 1.8rem;
-            }
-            
-            .category-tabs {
-                gap: 0.5rem;
-            }
-            
-            .category-tab {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
+            .name-fields {
+                flex-direction: column;
+                gap: 0;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main-container">
-        <h1>Your Emotional Spectrum</h1>
-        <p class="subtitle">Explore 48 nuanced emotional states to find your perfect match</p>
-        
-        <div class="category-tabs" id="categoryTabs">
-            <!-- Category tabs will be added by JavaScript -->
+    <div class="container">
+        <div class="header">
+            <h1>Create Your Account</h1>
+            <p>Join our community today and unlock amazing features</p>
         </div>
         
-        <div class="emotion-grid" id="emotionGrid">
-            <!-- Emotion cards will be added by JavaScript -->
-        </div>
+        <form action="#" method="POST">
+            <div class="name-fields">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" name="last_name" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" minlength="8" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" minlength="8" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob">
+            </div>
+            
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                    <option value="prefer-not-to-say">Prefer not to say</option>
+                </select>
+            </div>
+            
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+            </div>
+            
+            <button type="submit">Create Account</button>
+        </form>
         
-        <div class="divider">OR</div>
-        
-        <div class="journal-entry">
-            <h3>Describe Your Emotional Landscape</h3>
-            <textarea placeholder="I'm experiencing a complex blend of..."></textarea>
-            <button class="btn">Receive Bespoke Content</button>
+        <div class="login-link">
+            Already have an account? <a href="/components/login.html">Log in</a>
         </div>
     </div>
-
-    <script>
-        // Complete emotional taxonomy with categories
-        const emotionCategories = [
-            {
-                name: "Joyful",
-                emotions: [
-                    { name: "Ecstatic", icon: "fa-face-grin-stars", color: "#FFD700" },
-                    { name: "Elated", icon: "fa-face-grin-tears", color: "#FFAC33" },
-                    { name: "Cheerful", icon: "fa-face-laugh-beam", color: "#FFD166" },
-                    { name: "Content", icon: "fa-face-smile", color: "#91C8E4" },
-                    { name: "Amused", icon: "fa-face-laugh-squint", color: "#FF9EAA" },
-                    { name: "Proud", icon: "fa-crown", color: "#D4AF37" }
-                ]
-            },
-            {
-                name: "Loving",
-                emotions: [
-                    { name: "Adoring", icon: "fa-heart-circle-bolt", color: "#FF69B4" },
-                    { name: "Affectionate", icon: "fa-heart-circle-plus", color: "#FF8FAB" },
-                    { name: "Compassionate", icon: "fa-hands-holding-heart", color: "#F67E7D" },
-                    { name: "Romantic", icon: "fa-heart-pulse", color: "#E0115F" },
-                    { name: "Sentimental", icon: "fa-heart-crack", color: "#C8A2C8" },
-                    { name: "Grateful", icon: "fa-hands-praying", color: "#4CC9F0" }
-                ]
-            },
-            {
-                name: "Vibrant",
-                emotions: [
-                    { name: "Energetic", icon: "fa-bolt", color: "#FFD700" },
-                    { name: "Excited", icon: "fa-star", color: "#FF9EAA" },
-                    { name: "Enthusiastic", icon: "fa-fire", color: "#FF6B6B" },
-                    { name: "Playful", icon: "fa-gamepad", color: "#50C878" },
-                    { name: "Hopeful", icon: "fa-sun", color: "#FFD166" },
-                    { name: "Inspired", icon: "fa-lightbulb", color: "#9370DB" }
-                ]
-            },
-            {
-                name: "Calm",
-                emotions: [
-                    { name: "Peaceful", icon: "fa-feather", color: "#91C8E4" },
-                    { name: "Serene", icon: "fa-face-smile-relaxed", color: "#A5B4FC" },
-                    { name: "Relaxed", icon: "fa-couch", color: "#B8B8FF" },
-                    { name: "Tranquil", icon: "fa-water", color: "#4682B4" },
-                    { name: "Centered", icon: "fa-circle-notch", color: "#7A86B6" },
-                    { name: "Mindful", icon: "fa-spa", color: "#A0D995" }
-                ]
-            },
-            {
-                name: "Melancholic",
-                emotions: [
-                    { name: "Nostalgic", icon: "fa-hourglass-half", color: "#6D7B8D" },
-                    { name: "Wistful", icon: "fa-cloud-sun", color: "#A2A2D0" },
-                    { name: "Lonely", icon: "fa-cloud", color: "#B8B8FF" },
-                    { name: "Sad", icon: "fa-face-sad-tear", color: "#A5B4FC" },
-                    { name: "Bittersweet", icon: "fa-face-smile-tear", color: "#C8A2C8" },
-                    { name: "Tender", icon: "fa-hand-holding-heart", color: "#FF8FAB" }
-                ]
-            },
-            {
-                name: "Challenged",
-                emotions: [
-                    { name: "Anxious", icon: "fa-wind", color: "#A2A2D0" },
-                    { name: "Overwhelmed", icon: "fa-water", color: "#4682B4" },
-                    { name: "Stressed", icon: "fa-cloud-rain", color: "#7A86B6" },
-                    { name: "Exhausted", icon: "fa-moon", color: "#4B0082" },
-                    { name: "Confused", icon: "fa-question", color: "#C4C4C4" },
-                    { name: "Bored", icon: "fa-clock", color: "#808080" }
-                ]
-            },
-            {
-                name: "Intense",
-                emotions: [
-                    { name: "Angry", icon: "fa-face-angry", color: "#F94144" },
-                    { name: "Furious", icon: "fa-fire", color: "#FF4500" },
-                    { name: "Passionate", icon: "fa-heart-pulse", color: "#E0115F" },
-                    { name: "Jealous", icon: "fa-eye", color: "#6D435A" },
-                    { name: "Frustrated", icon: "fa-poo", color: "#8B4513" },
-                    { name: "Irritated", icon: "fa-bug", color: "#9ACD32" }
-                ]
-            },
-            {
-                name: "Complex",
-                emotions: [
-                    { name: "Pensive", icon: "fa-lightbulb", color: "#9370DB" },
-                    { name: "Reflective", icon: "fa-mirror", color: "#7A86B6" },
-                    { name: "Ambivalent", icon: "fa-scale-balanced", color: "#C4C4C4" },
-                    { name: "Vulnerable", icon: "fa-heart-circle-exclamation", color: "#FF8FAB" },
-                    { name: "Awkward", icon: "fa-face-grimace", color: "#FFD166" },
-                    { name: "Surprised", icon: "fa-face-surprise", color: "#4CC9F0" }
-                ]
-            }
-        ];
-
-        // DOM elements
-        const categoryTabs = document.getElementById('categoryTabs');
-        const emotionGrid = document.getElementById('emotionGrid');
-        let selectedCard = null;
-        let currentCategory = emotionCategories[0];
-
-        // Create category tabs
-        emotionCategories.forEach((category, index) => {
-            const tab = document.createElement('div');
-            tab.className = `category-tab ${index === 0 ? 'active' : ''}`;
-            tab.textContent = category.name;
-            tab.addEventListener('click', () => {
-                // Update active tab
-                document.querySelector('.category-tab.active').classList.remove('active');
-                tab.classList.add('active');
-                
-                // Load new category
-                currentCategory = category;
-                loadEmotions();
-            });
-            categoryTabs.appendChild(tab);
-        });
-
-        // Load emotions for current category
-        function loadEmotions() {
-            emotionGrid.innerHTML = '';
-            currentCategory.emotions.forEach(emotion => {
-                const card = document.createElement('div');
-                card.className = 'emotion-card';
-                card.innerHTML = `
-                    <div class="emotion-icon" style="color: ${emotion.color}">
-                        <i class="fas ${emotion.icon}"></i>
-                    </div>
-                    <div class="emotion-name">${emotion.name}</div>
-                `;
-                
-                card.addEventListener('click', () => {
-                    // Deselect previous card if exists
-                    if(selectedCard) {
-                        selectedCard.classList.remove('selected');
-                    }
-                    
-                    // Select new card
-                    card.classList.add('selected');
-                    selectedCard = card;
-                    
-                    // Visual feedback
-                    setTimeout(() => {
-                        console.log(`Selected: ${emotion.name}`);
-                    }, 300);
-                });
-                
-                emotionGrid.appendChild(card);
-            });
-            
-            // Animate in
-            setTimeout(() => {
-                const cards = document.querySelectorAll('.emotion-card');
-                cards.forEach((card, index) => {
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
-                    }, 50 * index);
-                });
-            }, 50);
-        }
-
-        // Initialize
-        loadEmotions();
-
-        // Textarea auto-expand
-        const textarea = document.querySelector('textarea');
-        textarea.addEventListener('input', function() {
-            this.style.height = 'auto';
-            this.style.height = (this.scrollHeight) + 'px';
-        });
-    </script>
 </body>
 </html>
