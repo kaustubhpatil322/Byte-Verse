@@ -4,7 +4,7 @@
 
 <hr/>
 
-  <h3 align="center"><em>For Now Three Emotions - Happy😀, Sad 😔 and Angry 😤</em></h3>
+  <h3 align="center"><em>For Now Three Emotions - Happy😀, Sad 😔, Fear 😨 and Angry 😤</em></h3>
 
 <h2>🧠 Problem Statement</h2>
 <blockquote>
