@@ -110,7 +110,7 @@ Design a platform that recommends content (music, Mood Freshner, quotes, videos)
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/2c83794814a2237c64d9984aea36c52f5903fb83/Images/pytorch.svg" alt="PyTorch" width="16" style="vertical-align: middle;"/> PyTorch
   </li>
   <li><b>Database:</b> 
-    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/client-side/Images/firebase.png" alt="Firebase" width="16" style="vertical-align: middle;"/> Firebase
+    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/firebase.png" alt="Firebase" width="16" style="vertical-align: middle;"/> Firebase
   </li>
 <!--   <li><b>Deployment:</b> 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/c648d59c4d44d9650fb0996b542400b6e6680566/Images/vercel.svg" alt="Vercel" width="16" style="vertical-align: middle;"/> Vercel
