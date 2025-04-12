@@ -7,7 +7,8 @@ import HeroSection from './components/Hero/HeroSection';
 import Login from './components/Login/Login';
 import Signup from './components/Signup/Signup';
 import ExpressMode from './components/ExpressMode/ExpressMode';
-import MoodSelector from './components/MoodSelector/MoodSelector'; // ✅ NEW IMPORT
+import MoodSelector from './components/MoodSelector/MoodSelector'; 
+import Journal from './components/Journal/Journal';
 
 const App = () => {
   return (
@@ -28,6 +29,8 @@ const App = () => {
 
           {/* Express Mode Page */}
           <Route path="/express-mode" element={<ExpressMode />} /> {/* ✅ MOVED FROM OUTSIDE */}
+
+          <Route path="/journal" element={<Journal />} />
         </Routes>
         <br />
         <Footer />

@@ -17,7 +17,8 @@ const Navbar = () => {
         <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
         <li><Link to="/mood" onClick={toggleMenu}>Mood Selector</Link></li> {/* ✅ UPDATED */}
         <li><Link to="/express-mode" onClick={toggleMenu}>Express Mode</Link></li>   {/* ✅ UPDATED */}
-        <li><Link to="/" onClick={toggleMenu}>Journal</Link></li>
+        <li><Link to="/journal" onClick={toggleMenu}>Journal</Link></li>
+
 
         <div className="mobile-auth">
           <Link to="/login" className="btn login">Login</Link>
