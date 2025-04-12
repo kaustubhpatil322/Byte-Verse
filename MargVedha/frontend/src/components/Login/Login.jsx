@@ -1,44 +1,45 @@
+// Login.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css'; // Optional external CSS file
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase'; // Adjust path based on location
+import { useNavigate } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleChange = (e) => {
+    setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: Replace with real authentication logic
-    console.log('Logging in with:', email, password);
+    try {
+      await signInWithEmailAndPassword(auth, formData.email, formData.password);
+      navigate('/dashboard'); // or wherever your main page is
+    } catch (error) {
+      if (error.code === 'auth/user-not-found') {
+        setError("User not found.");
+      } else if (error.code === 'auth/wrong-password') {
+        setError("Wrong password.");
+      } else {
+        setError("Login failed.");
+      }
+    }
   };
 
   return (
     <div className="login-container">
-      <h2>Welcome Back to RasaSetu 🌈</h2>
-      <form onSubmit={handleLogin} className="login-form">
+      <h2>Welcome Back 🚀</h2>
+      <form onSubmit={handleSubmit}>
+        {error && <p className="error-message">{error}</p>}
         <label>Email</label>
-        <input 
-          type="email" 
-          value={email}
-          onChange={(e) => setEmail(e.target.value)} 
-          required 
-          placeholder="you@example.com"
-        />
-        
+        <input name="email" type="email" required onChange={handleChange} />
         <label>Password</label>
-        <input 
-          type="password" 
-          value={password}
-          onChange={(e) => setPassword(e.target.value)} 
-          required 
-          placeholder="••••••••"
-        />
-
+        <input name="password" type="password" required onChange={handleChange} />
         <button type="submit">Log In</button>
-
-        <p className="signup-link">
-          Don’t have an account? <Link to="/signup">Sign up</Link>
-        </p>
       </form>
     </div>
   );
