@@ -97,16 +97,16 @@ Design a platform that recommends content (music, Mood Freshner, quotes, videos)
 
 <ul>
   <li><b>Frontend:</b> 
-    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/client-side/Images/reactVite.jpeg" alt="React Vite" width="16" style="vertical-align: middle;"/> React (Vite)
+    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/reactVite.jpeg" alt="React Vite" width="16" style="vertical-align: middle;"/> React (Vite)
   </li>
   <li><b>Backend:</b> 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/73570d041e1e630accb414a52113b986f8572ff6/Images/node-js.svg" alt="Node.js" width="16" style="vertical-align: middle;"/> Node.js
   </li>
   <li><b>ML:</b> Python, Flask, TensorFlow, 
-    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/client-side/Images/deepface.png" alt="DeepFace" width="16" style="vertical-align: middle;"/> DeepFace, 
-    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/client-side/Images/gradio.jpeg" alt="Gradio" width="16" style="vertical-align: middle;"/> Gradio, 
-    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/client-side/Images/opencv.jpeg" alt="OpenCV" width="16" style="vertical-align: middle;"/> OpenCV, 
-    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/client-side/Images/numpy.png" alt="NumPy" width="16" style="vertical-align: middle;"/> NumPy, 
+    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/deepface.png" alt="DeepFace" width="16" style="vertical-align: middle;"/> DeepFace, 
+    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/gradio.jpeg" alt="Gradio" width="16" style="vertical-align: middle;"/> Gradio, 
+    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/opencv.jpeg" alt="OpenCV" width="16" style="vertical-align: middle;"/> OpenCV, 
+    <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/numpy.png" alt="NumPy" width="16" style="vertical-align: middle;"/> NumPy, 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/2c83794814a2237c64d9984aea36c52f5903fb83/Images/pytorch.svg" alt="PyTorch" width="16" style="vertical-align: middle;"/> PyTorch
   </li>
   <li><b>Database:</b> 
