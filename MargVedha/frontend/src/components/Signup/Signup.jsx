@@ -1,5 +1,9 @@
+// Signup.jsx
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '@/firebase'; // Make sure this path is accurate
 import './Signup.css';
 
 const Signup = () => {
@@ -15,6 +19,10 @@ const Signup = () => {
     agree: false,
   });
 
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
+  // Handle form changes
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData((prev) => ({
@@ -23,81 +31,108 @@ const Signup = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  // Handle signup submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
 
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      setError("Passwords do not match.");
       return;
     }
 
     if (!formData.agree) {
-      alert("You must agree to the Terms and Privacy Policy.");
+      setError("You must accept the terms & privacy policy.");
       return;
     }
 
-    // TODO: Handle signup (e.g., Firebase, API)
-    console.log("Signup Data:", formData);
+    try {
+      // Step 1: Create user in Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password);
+      const user = userCredential.user;
+
+      // Step 2: Store user profile in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        uid: user.uid,
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone,
+        dob: formData.dob,
+        gender: formData.gender,
+        createdAt: serverTimestamp(),
+      });
+
+      alert("Account created successfully ✅");
+      navigate("/login");
+
+    } catch (err) {
+      console.error("Signup Error: ", err.message);
+      if (err.code === 'auth/email-already-in-use') {
+        setError("This email is already in use.");
+      } else if (err.code === 'auth/weak-password') {
+        setError("Password should be at least 6 characters.");
+      } else {
+        setError("Signup failed. Please try again.");
+      }
+    }
   };
 
   return (
     <div className="signup-container">
       <h2>Create Your RasaSetu Account 🧠</h2>
       <form onSubmit={handleSubmit} className="signup-form">
+        {error && <div className="error-message">{error}</div>}
 
+        {/* First Name & Last Name */}
         <div className="name-fields">
           <div>
             <label>First Name</label>
-            <input type="text" name="firstName" required value={formData.firstName} onChange={handleChange} />
+            <input name="firstName" value={formData.firstName} onChange={handleChange} required />
           </div>
           <div>
             <label>Last Name</label>
-            <input type="text" name="lastName" required value={formData.lastName} onChange={handleChange} />
+            <input name="lastName" value={formData.lastName} onChange={handleChange} required />
           </div>
         </div>
 
-        <label>Email Address</label>
-        <input type="email" name="email" required value={formData.email} onChange={handleChange} />
+        {/* Email */}
+        <label>Email</label>
+        <input name="email" type="email" value={formData.email} onChange={handleChange} required />
 
+        {/* Password */}
         <label>Password</label>
-        <input type="password" name="password" required value={formData.password} onChange={handleChange} />
+        <input name="password" type="password" value={formData.password} onChange={handleChange} required />
 
         <label>Confirm Password</label>
-        <input type="password" name="confirmPassword" required value={formData.confirmPassword} onChange={handleChange} />
+        <input name="confirmPassword" type="password" value={formData.confirmPassword} onChange={handleChange} required />
 
+        {/* Phone Number */}
         <label>Phone Number</label>
-        <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} />
+        <input name="phone" type="tel" value={formData.phone} onChange={handleChange} required />
 
+        {/* Date of Birth */}
         <label>Date of Birth</label>
-        <input type="date" name="dob" required value={formData.dob} onChange={handleChange} />
+        <input name="dob" type="date" value={formData.dob} onChange={handleChange} required />
 
+        {/* Gender */}
         <label>Gender</label>
-        <select name="gender" required value={formData.gender} onChange={handleChange}>
+        <select name="gender" value={formData.gender} onChange={handleChange} required>
           <option value="">-- Select Gender --</option>
-          <option value="female">Female</option>
           <option value="male">Male</option>
+          <option value="female">Female</option>
           <option value="nonbinary">Non-binary</option>
           <option value="preferNotToSay">Prefer not to say</option>
         </select>
 
+        {/* Terms Agreement */}
         <div className="checkbox-container">
-          <input
-            type="checkbox"
-            name="agree"
-            checked={formData.agree}
-            onChange={handleChange}
-            required
-          />
-          <label>
-            I agree to the <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms & Conditions</Link>
-          </label>
+          <input type="checkbox" name="agree" checked={formData.agree} onChange={handleChange} required />
+          <label>I agree to the <Link to="/privacy">Privacy Policy</Link> and <Link to="/terms">Terms</Link></label>
         </div>
 
         <button type="submit">Sign Up</button>
-
-        <p className="login-link">
-          Already have an account? <Link to="/login">Log in</Link>
-        </p>
+        <p>Already have an account? <Link to="/login">Log in</Link></p>
       </form>
     </div>
   );
