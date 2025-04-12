@@ -11,7 +11,8 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">RasaSetu</div>
+      <Link to="/" onClick={toggleMenu}><div className="navbar-logo">RasaSetu</div></Link>
+      
 
       <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
         <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
