@@ -1,6 +1,10 @@
 <h1 align="center">🌉 RasaSetu – The Bridge of Emotions</h1>
 
 <h3 align="center"><em>Experience your emotions. Reflect. Heal. With content that truly connects.</em></h3>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/RasaSetu/Images/Emotions.png" alt="Various Emotions Banner" width="800"/>
+</p>
+
 
 <hr/>
 
