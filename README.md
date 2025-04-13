@@ -107,7 +107,8 @@ Design a platform that recommends content (music, Mood Freshner, quotes, videos)
   <li><b>Backend:</b> 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/73570d041e1e630accb414a52113b986f8572ff6/Images/node-js.svg" alt="Node.js" width="16" style="vertical-align: middle;"/> Node.js
   </li>
-  <li><b>ML:</b> Python, Flask, TensorFlow, 
+  <li><b>ML:</b> <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/python.svg" alt="python" width="16" style="vertical-align: middle;"/> Python,
+    Flask, TensorFlow, 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/deepface.png" alt="DeepFace" width="16" style="vertical-align: middle;"/> DeepFace, 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/gradio.jpeg" alt="Gradio" width="16" style="vertical-align: middle;"/> Gradio, 
     <img src="https://raw.githubusercontent.com/kaustubhpatil322/Byte-Verse/refs/heads/RasaSetu/Images/opencv.jpeg" alt="OpenCV" width="16" style="vertical-align: middle;"/> OpenCV, 
