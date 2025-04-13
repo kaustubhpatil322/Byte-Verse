@@ -4,11 +4,11 @@ import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Track login state for success animation
+  const [isLoggedIn, setIsLoggedInState] = useState(false); // Track login state for success animation
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -21,12 +21,13 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, formData.email, formData.password);
       setIsLoading(false);
-      setIsLoggedIn(true);
+      setIsLoggedInState(true);
+      setIsLoggedIn(true); // Update parent component state
       setError(''); // Clear error if login is successful
       setTimeout(() => navigate('/'), 1000); // Redirect to home page on successful login
     } catch (error) {
       setIsLoading(false);
-      setIsLoggedIn(false); // Reset login state
+      setIsLoggedInState(false); // Reset login state
       if (error.code === 'auth/user-not-found') {
         setError("User not found.");
       } else if (error.code === 'auth/wrong-password') {

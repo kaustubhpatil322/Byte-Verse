@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; // ✅ Import Link for navigation
 import './HeroSection.css';
 
-const HeroSection = () => {
+const HeroSection = ({ isLoggedIn }) => {
   return (
     <section className="hero">
       <div className="hero-overlay">
@@ -10,7 +11,15 @@ const HeroSection = () => {
           <p className="hero-subtitle">
             Your personal guide to emotional clarity and content therapy. Track your feelings, reflect deeply, and get content that heals.
           </p>
-          <a href="#start" className="hero-button">Start Your Journey</a>
+          {/* ✅ Updated to Link for internal routing */}
+          <Link 
+            to="/external" 
+            className="hero-button" 
+            disabled={!isLoggedIn}  // Disable button until logged in
+            style={{ pointerEvents: isLoggedIn ? 'auto' : 'none', opacity: isLoggedIn ? 1 : 0.5 }} // Disable button with styles
+          >
+            Talk to our AI Avatar
+          </Link>
         </div>
       </div>
     </section>

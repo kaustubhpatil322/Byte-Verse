@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
@@ -9,9 +9,12 @@ import Signup from './components/Signup/Signup';
 import ExpressMode from './components/ExpressMode/ExpressMode';
 import MoodSelector from './components/MoodSelector/MoodSelector'; 
 import Journal from './components/Journal/Journal';
-import Profile from './components/Profile/Profile'; // ✅ NEW: Import Profile
+import Profile from './components/Profile/Profile';
+import ExternalSitePage from './components/ExternalSitePage/ExternalSitePage';
 
 const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);  // Track login state
+
   return (
     <Router>
       <div>
@@ -19,10 +22,10 @@ const App = () => {
         <br />
         <Routes>
           {/* Home Page */}
-          <Route path="/" element={<><HeroSection /> <br /> <EmotionalSpectrum /></>} />
+          <Route path="/" element={<><HeroSection isLoggedIn={isLoggedIn} /> <br /> <EmotionalSpectrum /></>} />
 
           {/* Login & Signup */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/signup" element={<Signup />} />
 
           {/* Mood Selector Page */}
@@ -34,8 +37,11 @@ const App = () => {
           {/* Journal Page */}
           <Route path="/journal" element={<Journal />} />
 
-          {/* ✅ Profile Page Route */}
+          {/* Profile Page */}
           <Route path="/profile" element={<Profile />} />
+
+          {/* External site */}
+          <Route path="/external" element={<ExternalSitePage />} />
         </Routes>
         <br />
         <Footer />
