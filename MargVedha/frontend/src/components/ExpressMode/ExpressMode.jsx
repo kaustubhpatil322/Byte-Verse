@@ -18,10 +18,10 @@ const DinosaurGame = () => {
 
   return (
     <div className="game-container">
-      <h3>Chrome Dinosaur Game</h3>
+      <h3>Free Online Games</h3>
       {/* The game UI or implementation */}
       <iframe
-        src="https://chromeofflinegame.com/"
+        src="https://www.crazygames.com/"
         width="100%"
         height="100%"
         title="Dinosaur Game"
