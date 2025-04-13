@@ -1,119 +1,424 @@
-/* ExpressMode.css */
+/* Overall Container */
+.express-mode-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f0f4f8;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Background overlay for a nature-like feel */
+.nature-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('nature-background.jpg') no-repeat center center/cover;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* Content container */
+.express-mode-content {
+  padding: 20px;
+  text-align: center;
+  z-index: 1;
+}
+
+/* Heading for Express Mode */
+h2 {
+  font-size: 2rem;
+  color: #4caf50;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Toggle for Mode Switch */
+.mode-toggle {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mode-label {
+  font-size: 1rem;
+  color: #333;
+  margin-right: 10px;
+}
+
+.mode-switch {
+  width: 60px;
+  height: 30px;
+  -webkit-appearance: none;
+  background-color: #ccc;
+  border-radius: 30px;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.mode-switch:checked {
+  background-color: #4caf50;
+}
+
+.mode-switch:before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  border-radius: 50%;
+  transition: transform 0.3s;
+}
+
+.mode-switch:checked:before {
+  transform: translateX(30px);
+}
+
+/* Premium and Normal Mode Showcase */
+.premium-showcase,
+.basic-mode-showcase {
+  margin-top: 30px;
+}
+
+.premium-showcase h3,
+.basic-mode-showcase h3 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.premium-feature {
+  margin: 20px 0;
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.premium-feature h4 {
+  font-size: 1.4rem;
+  color: #4caf50;
+  margin-bottom: 10px;
+}
+
+.premium-feature p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.basic-mode-showcase {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.basic-mode-showcase p {
+  color: #777;
+  font-size: 1rem;
+}
+
+.upgrade-message {
+  margin-top: 20px;
+  background-color: #4caf50;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.upgrade-message p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Motivational Quote Styling */
+.motivational-quote {
+  margin-top: 40px;
+  font-size: 1.2rem;
+  color: #333;
+  font-style: italic;
+  border-left: 5px solid #4caf50;
+  padding-left: 15px;
+  margin-bottom: 30px;
+}
+
+/* Additional Resources Section */
+.additional-resources {
+  margin-top: 40px;
+}
+
+.additional-resources h3 {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.additional-resources ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.additional-resources li {
+  margin-bottom: 10px;
+}
+
+.additional-resources a {
+  color: #4caf50;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+.additional-resources a:hover {
+  text-decoration: underline;
+}
+
+/* Styling for Premium Features */
+.premium-feature h4 {
+  font-size: 1.5rem;
+  color: #4caf50;
+  margin-bottom: 8px;
+}
+
+.premium-feature p {
+  font-size: 1rem;
+  color: #777;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .express-mode-content {
+    padding: 15px;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .premium-showcase h3,
+  .basic-mode-showcase h3 {
+    font-size: 1.5rem;
+  }
+
+  .mode-switch {
+    width: 50px;
+    height: 25px;
+  }
+
+  .mode-switch:before {
+    width: 20px;
+    height: 20px;
+    top: 2px;
+    left: 2px;
+  }
+
+  .premium-feature h4 {
+    font-size: 1.2rem;
+  }
+
+  .premium-feature p {
+    font-size: 0.9rem;
+  }
+
+  .motivational-quote {
+    font-size: 1rem;
+  }
+
+  .additional-resources a {
+    font-size: 1rem;
+  }
+}
+
+
 
 .express-mode-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f0f8ff;
-    font-family: 'Arial', sans-serif;
-    color: #333;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .express-mode-content {
-    max-width: 600px;
-    background: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-  }
-  
-  h2 {
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .breathing-container {
-    margin: 30px 0;
-  }
-  
-  .breathing-circle {
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
-    background-color: #00b894;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 3s ease-in-out;
-  }
-  
-  .breathing-circle.breathing {
-    animation: breathing 18s infinite;
-  }
-  
-  @keyframes breathing {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.5);
-    }
-    100% {
-      transform: scale(1);
-    }
-  }
-  
-  .breathing-steps {
-    margin-top: 20px;
-  }
-  
-  .breathing-steps p {
-    font-size: 18px;
-    color: #333;
-  }
-  
-  .breathing-steps button {
-    padding: 10px 20px;
-    background-color: #00b894;
-    border: none;
-    color: white;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .breathing-steps button:hover {
-    background-color: #098d66;
-  }
-  
-  .motivational-quote {
-    margin-top: 20px;
-    font-style: italic;
-    font-size: 18px;
-    color: #555;
-  }
-  
-  .additional-resources {
-    margin-top: 30px;
-  }
-  
-  .additional-resources h3 {
-    font-size: 20px;
-    color: #333;
-  }
-  
-  .additional-resources ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .additional-resources li {
-    margin: 10px 0;
-  }
-  
-  .additional-resources a {
-    color: #00b894;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .additional-resources a:hover {
-    text-decoration: underline;
-  }
-  
+  position: relative;
+  padding: 20px;
+}
+
+.nature-bg-overlay {
+  background-image: url("path/to/nature-image.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.express-mode-content {
+  text-align: center;
+}
+
+.mode-toggle {
+  margin: 20px 0;
+}
+
+.breathing-exercise {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.breathing-circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 20px;
+  background-color: #4caf50;
+  animation: breathing-animation 4s infinite;
+}
+
+.breathing-circle.in {
+  animation: breathing-in 4s ease-in-out infinite;
+}
+
+.breathing-circle.hold {
+  animation: breathing-hold 4s infinite;
+}
+
+.breathing-circle.out {
+  animation: breathing-out 4s ease-in-out infinite;
+}
+
+@keyframes breathing-in {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+@keyframes breathing-out {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.5); }
+  100% { transform: scale(1); }
+}
+
+@keyframes breathing-hold {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+/* Chatbot.css */
+.chatbot-container {
+  width: 300px;
+  padding: 20px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-header {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.chatbot-body {
+  margin-top: 20px;
+}
+
+.chatbot-messages {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+
+.express-mode-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f4f4f4;
+  padding: 20px;
+  position: relative;
+}
+
+.nature-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+  z-index: -1;
+}
+
+.express-mode-content {
+  width: 100%;
+  max-width: 1200px;
+  margin-top: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.page-title {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.mode-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.premium-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.premium-feature {
+  padding: 20px;
+  background-color: #f0f8ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-feature {
+  grid-column: span 2;
+}
+
+.motivational-quote,
+.random-thought,
+.health-status,
+.additional-resources {
+  margin: 20px 0;
+}
+
+.health-slider {
+  width: 100%;
+}
+
+.upgrade-message {
+  background-color: #ffeb3b;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+}
