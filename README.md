@@ -1,4 +1,4 @@
-<h1 align="center">🌉 RasaSetu – The Bridge of Emotions</h1>
+<h1 align="center">🌉 RasaSetu – The Bridge of Emotions </h1>
 
 <h3 align="center"><em>Experience your emotions. Reflect. Heal. With content that truly connects.</em></h3>
 <p align="center">
