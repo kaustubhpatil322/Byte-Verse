@@ -37,10 +37,42 @@ const Navbar = () => {
       {/* Mobile Navigation Links */}
       <div className={`navbar-links ${isMobileMenuOpen ? 'open' : ''}`}>
         <li><Link to="/" onClick={toggleMenu}>Home</Link></li>
-        {/* Disable links if user is not logged in */}
-        <li><Link to="/mood" onClick={toggleMenu} className={user ? '' : 'disabled'}>Mood Selector</Link></li>
-        <li><Link to="/express-mode" onClick={toggleMenu} className={user ? '' : 'disabled'}>Express Mode</Link></li>
-        <li><Link to="/journal" onClick={toggleMenu} className={user ? '' : 'disabled'}>Journal</Link></li>
+        
+        {/* Mood Selector Link, disabled if not logged in */}
+        <li>
+          <Link 
+            to="/mood" 
+            onClick={toggleMenu} 
+            className={user ? '' : 'disabled'}
+            aria-disabled={user ? 'false' : 'true'}
+          >
+            Mood Selector
+          </Link>
+        </li>
+
+        {/* Express Mode Link, disabled if not logged in */}
+        <li>
+          <Link 
+            to="/express-mode" 
+            onClick={toggleMenu} 
+            className={user ? '' : 'disabled'}
+            aria-disabled={user ? 'false' : 'true'}
+          >
+            Express Mode
+          </Link>
+        </li>
+
+        {/* Journal Link, disabled if not logged in */}
+        <li>
+          <Link 
+            to="/journal" 
+            onClick={toggleMenu} 
+            className={user ? '' : 'disabled'}
+            aria-disabled={user ? 'false' : 'true'}
+          >
+            Journal
+          </Link>
+        </li>
       </div>
 
       {/* Desktop Authentication Links or User Dropdown */}
