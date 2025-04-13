@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { auth, db } from '@/firebase';
+import { auth, db } from '@/firebase'; // Adjust if needed
 import './Profile.css';
 
 const Profile = () => {
@@ -33,42 +33,26 @@ const Profile = () => {
   }, []);
 
   if (loading) {
-    return (
-      <div className="profile-container">
-        <div className="loader"></div>
-        <p className="loading-text">Loading your profile...</p>
-      </div>
-    );
+    return <div className="profile-container">Loading profile...</div>;
   }
 
   if (!authUser) {
-    return (
-      <div className="profile-container">
-        <div className="not-logged-in">🚫 You are not logged in.</div>
-      </div>
-    );
+    return <div className="profile-container">You are not logged in.</div>;
   }
 
   return (
     <div className="profile-container">
-      <h2 className="profile-title">👤 Your Profile</h2>
+      <h2>Your Profile</h2>
       <div className="profile-card">
-        <ProfileRow label="Name" value={`${userData.firstName} ${userData.lastName}`} />
-        <ProfileRow label="Email" value={userData.email} />
-        <ProfileRow label="Phone" value={userData.phone} />
-        <ProfileRow label="Date of Birth" value={userData.dob} />
-        <ProfileRow label="Gender" value={userData.gender} />
-        <ProfileRow label="Account Created" value={userData.createdAt?.toDate().toLocaleString()} />
+        <p><strong>Name:</strong> {userData.firstName} {userData.lastName}</p>
+        <p><strong>Email:</strong> {userData.email}</p>
+        <p><strong>Phone:</strong> {userData.phone}</p>
+        <p><strong>Date of Birth:</strong> {userData.dob}</p>
+        <p><strong>Gender:</strong> {userData.gender}</p>
+        <p><strong>Account Created:</strong> {userData.createdAt?.toDate().toLocaleString()}</p>
       </div>
     </div>
   );
 };
-
-const ProfileRow = ({ label, value }) => (
-  <div className="profile-row">
-    <span className="profile-label">{label}:</span>
-    <span className="profile-value">{value}</span>
-  </div>
-);
 
 export default Profile;
