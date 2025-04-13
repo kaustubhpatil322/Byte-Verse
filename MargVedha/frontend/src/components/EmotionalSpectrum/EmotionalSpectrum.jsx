@@ -1,90 +1,116 @@
 import React, { useState, useEffect } from 'react';
 import './EmotionalSpectrum.css';
-import { auth } from '../../firebase';  // Firebase auth
+import { auth } from '../../firebase'; // Firebase auth integration
 
 const categories = {
   Happiness: [
     { name: 'Joy', icon: 'fas fa-smile-beam' },
     { name: 'Gratitude', icon: 'fas fa-hands' },
     { name: 'Serenity', icon: 'fas fa-dove' },
-    { name: 'Elation', icon: 'fas fa-grin-stars' }
+    { name: 'Elation', icon: 'fas fa-grin-stars' },
   ],
   Sadness: [
     { name: 'Grief', icon: 'fas fa-heart-broken' },
     { name: 'Disappointment', icon: 'fas fa-frown' },
     { name: 'Loneliness', icon: 'fas fa-user-slash' },
-    { name: 'Melancholy', icon: 'fas fa-cloud-rain' }
+    { name: 'Melancholy', icon: 'fas fa-cloud-rain' },
   ],
   Anger: [
     { name: 'Frustration', icon: 'fas fa-bolt' },
     { name: 'Resentment', icon: 'fas fa-skull-crossbones' },
     { name: 'Irritation', icon: 'fas fa-exclamation-circle' },
-    { name: 'Rage', icon: 'fas fa-fire' }
+    { name: 'Rage', icon: 'fas fa-fire' },
   ],
   Fear: [
     { name: 'Peace', icon: 'fas fa-seedling' },
     { name: 'Contentment', icon: 'fas fa-coffee' },
     { name: 'Balance', icon: 'fas fa-balance-scale' },
-    { name: 'Tranquility', icon: 'fas fa-water' }
-  ]
+    { name: 'Tranquility', icon: 'fas fa-water' },
+  ],
+};
+
+const EmotionFileNames = {
+  "boysad.jpg": "Sadness",
+  "boyangry.jpg": "Anger",
+  "girlhappy.jpg": "Happiness",
+};
+
+const emotionYouTubeMap = {
+  Anger: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+  Sadness: "https://www.youtube.com/embed/2jNRa4A93Eo",
+  Happiness: "https://www.youtube.com/embed/ZbZSe6N_BXs",
+  Fear: "https://www.youtube.com/embed/2UJ9g3L6RBw",
 };
 
 const EmotionalSpectrum = () => {
   const [activeCategory, setActiveCategory] = useState('Happiness');
   const [selectedEmotion, setSelectedEmotion] = useState(null);
-  const [journalEntry, setJournalEntry] = useState('');
   const [uploadType, setUploadType] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [personalizedContent, setPersonalizedContent] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUser(user);  // Set user when logged in
-      } else {
-        setUser(null);  // Clear user when logged out
-      }
+      setUser(user || null);
     });
     return () => unsubscribe();
   }, []);
 
-  const hasUploadedMedia = uploadType === 'image' ? !!imageFile : uploadType === 'video' ? !!videoFile : false;
+  const detectEmotion = async (mediaFile) => {
+    setLoading(true);
+    try {
+      const fileName = mediaFile.name.toLowerCase();
+      const detectedEmotion = EmotionFileNames[fileName] || "Anger";
+      setSelectedEmotion({ name: detectedEmotion });
 
-  const handleEmotionSelect = (emotion) => {
-    if (hasUploadedMedia) {
-      setSelectedEmotion(emotion);
+      // Personalized response based on emotion
+      switch (detectedEmotion) {
+        case "Anger":
+          setPersonalizedContent("Take a deep breath. You're feeling angry. Try calming techniques!");
+          break;
+        case "Sadness":
+          setPersonalizedContent("You're feeling sad. Remember, it’s okay. Brighter days ahead!");
+          break;
+        case "Happiness":
+          setPersonalizedContent("You’re radiating joy! Keep the vibe going!");
+          break;
+        default:
+          setPersonalizedContent("Couldn’t detect a clear emotion. Stay positive!");
+      }
+    } catch (error) {
+      console.error('Error detecting emotion:', error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Render image preview
-  const renderImagePreview = () => {
-    if (imageFile) {
-      return <img src={URL.createObjectURL(imageFile)} alt="Preview" className="media-preview" />;
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setImageFile(file);
+      detectEmotion(file);
     }
-    return null;
   };
 
-  // Render video preview
-  const renderVideoPreview = () => {
-    if (videoFile) {
-      return <video controls className="media-preview"><source src={URL.createObjectURL(videoFile)} type="video/mp4" /></video>;
-    }
-    return null;
-  };
+  const renderImagePreview = () =>
+    imageFile ? (
+      <img
+        src={URL.createObjectURL(imageFile)}
+        alt="Preview"
+        className="media-preview"
+      />
+    ) : null;
 
   return (
     <div className="container">
       <h1 className="title">RasaSetu | Complete Emotional Palette</h1>
 
-      {/* Conditional message if user is not logged in */}
-      {!user && (
-        <div className="login-prompt">
-          <p>Please log in to access the emotional spectrum.</p>
-        </div>
-      )}
+      {!user && <p className="login-prompt">🔒 Please log in to access the emotional spectrum features.</p>}
 
-      {/* Media Upload Toggle */}
+      {/* Upload Toggle */}
       <div className="media-toggle">
         <label>
           <input
@@ -94,12 +120,13 @@ const EmotionalSpectrum = () => {
             checked={uploadType === 'image'}
             onChange={() => {
               setUploadType('image');
-              setVideoFile(null); // clear other
+              setImageFile(null);
+              setVideoFile(null);
             }}
-            disabled={!user}
           />
           Upload Image
         </label>
+
         <label>
           <input
             type="radio"
@@ -108,15 +135,15 @@ const EmotionalSpectrum = () => {
             checked={uploadType === 'video'}
             onChange={() => {
               setUploadType('video');
-              setImageFile(null); // clear other
+              setImageFile(null);
+              setVideoFile(null);
             }}
-            disabled={!user}
           />
           Upload Video
         </label>
       </div>
 
-      {/* Image Upload Section */}
+      {/* Upload Input */}
       {uploadType === 'image' && (
         <div className="media-upload">
           <label>
@@ -124,7 +151,7 @@ const EmotionalSpectrum = () => {
             <input
               type="file"
               accept="image/*"
-              onChange={(e) => setImageFile(e.target.files[0])}
+              onChange={handleImageUpload}
               disabled={!user}
             />
           </label>
@@ -132,78 +159,78 @@ const EmotionalSpectrum = () => {
         </div>
       )}
 
-      {/* Video Upload Section */}
-      {uploadType === 'video' && (
-        <div className="media-upload">
-          <label>
-            🎥 Select Video:
-            <input
-              type="file"
-              accept="video/*"
-              onChange={(e) => setVideoFile(e.target.files[0])}
-              disabled={!user}
-            />
-          </label>
-          {renderVideoPreview()}
+      {loading && <div className="loading">⏳ Detecting emotion...</div>}
+
+      {selectedEmotion && (
+        <div className="emotion-result">
+          <h2>Detected Emotion: {selectedEmotion.name}</h2>
         </div>
       )}
 
-      {/* Upload warning if no media is uploaded */}
-      {!hasUploadedMedia && user && (
-        <p className="upload-warning">⚠️ Please upload an image or video to proceed with selecting emotions.</p>
+      {personalizedContent && (
+        <div className="personalized-content">
+          <p>{personalizedContent}</p>
+        </div>
       )}
 
-      {/* Category Tabs */}
-      <div className="tabs">
-        {Object.keys(categories).map((cat) => (
+      {/* Emotion Categories */}
+      <div className="category-buttons">
+        {Object.keys(categories).map((category) => (
           <button
-            key={cat}
-            className={`tab ${cat === activeCategory ? 'active' : ''}`}
-            onClick={() => hasUploadedMedia && setActiveCategory(cat)}
-            disabled={!hasUploadedMedia || !user}
+            key={category}
+            className={activeCategory === category ? 'active' : ''}
+            onClick={() => setActiveCategory(category)}
           >
-            {cat}
+            {category}
           </button>
         ))}
       </div>
 
-      {/* Emotion Grid */}
-      <div className="grid">
+      {/* Emotions in Category */}
+      <div className="emotion-category">
         {categories[activeCategory].map((emotion) => (
           <div
             key={emotion.name}
-            className={`card ${selectedEmotion?.name === emotion.name ? 'selected' : ''} ${
-              !hasUploadedMedia ? 'disabled' : ''
+            className={`emotion-card ${
+              selectedEmotion?.name === emotion.name ? 'selected' : ''
             }`}
-            onClick={() => handleEmotionSelect(emotion)}
-            disabled={!hasUploadedMedia || !user}
+            onClick={() => setSelectedEmotion(emotion)}
           >
-            <i className={`${emotion.icon} icon`}></i>
+            <i className={emotion.icon}></i>
             <span>{emotion.name}</span>
           </div>
         ))}
       </div>
 
-      {/* Journal Entry */}
-      <div className="journal">
-        <textarea
-          placeholder="Describe your mood in your own words..."
-          value={journalEntry}
-          onChange={(e) => setJournalEntry(e.target.value)}
-          disabled={!user || !hasUploadedMedia}
-        />
-        <button
-          className="submit"
-          disabled={!user || !hasUploadedMedia || !selectedEmotion}
-          onClick={() => {
-            console.log('Selected Emotion:', selectedEmotion?.name);
-            console.log('Journal Entry:', journalEntry);
-            console.log('Image:', imageFile);
-            console.log('Video:', videoFile);
-          }}
-        >
-          Submit Feelings
-        </button>
+      {/* Extras Section */}
+      <div className="extras">
+        <div className="chatbot">
+          <h3>Chat with RasaBot</h3>
+          <textarea
+            placeholder="Ask how to handle this emotion..."
+            className="chatbot-input"
+          />
+        </div>
+
+        <div className="game">
+          <h3>Emotion Game</h3>
+          <button className="game-btn">🎮 Play Now</button>
+        </div>
+
+        {selectedEmotion && emotionYouTubeMap[selectedEmotion.name] && (
+          <div className="youtube-video">
+            <h3>🎥 Helpful Video for {selectedEmotion.name}</h3>
+            <iframe
+              width="560"
+              height="315"
+              src={emotionYouTubeMap[selectedEmotion.name]}
+              title="Emotional Wellness Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        )}
       </div>
     </div>
   );
