@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './EmotionalSpectrum.css';
-import { auth } from '../../firebase'; // Firebase auth integration
+import { auth } from '../../firebase';
 
 const categories = {
   Happiness: [
@@ -36,11 +36,23 @@ const EmotionFileNames = {
 };
 
 const emotionYouTubeMap = {
-  Anger: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-  Sadness: "https://www.youtube.com/embed/2jNRa4A93Eo",
-  Happiness: "https://www.youtube.com/embed/ZbZSe6N_BXs",
-  Fear: "https://www.youtube.com/embed/2UJ9g3L6RBw",
+  Anger: [
+    "https://www.youtube.com/embed/6BYIKEH0RCQ?si=o3LsLBw9BO_jxtNG",
+    "https://www.youtube.com/embed/abiL84EAWSY?si=d7P1baefv5fyXFAF" ],
+  Sadness: [
+    
+    "https://youtu.be/abiL84EAWSY?si=f4Thj2XeAdwRBjvl"
+  ],
+  Happiness: [
+    "https://youtu.be/R7spJ7YjNOY?si=HZmascHaewKCOM0v",
+    ""
+  ],
+  Fear: [
+    "https://www.youtube.com/embed/2UJ9g3L6RBw",
+    "https://www.youtube.com/embed/bnVUHWCynig"
+  ],
 };
+
 
 const EmotionalSpectrum = () => {
   const [activeCategory, setActiveCategory] = useState('Happiness');
@@ -205,20 +217,17 @@ const EmotionalSpectrum = () => {
       {/* Extras Section */}
       <div className="extras">
         <div className="chatbot">
-          <h3>Chat with RasaBot</h3>
-          <textarea
-            placeholder="Ask how to handle this emotion..."
-            className="chatbot-input"
-          />
-        </div>
-
-        <div className="game">
-          <h3>Emotion Game</h3>
-          <button className="game-btn">🎮 Play Now</button>
-        </div>
+  <div className="cropped-webview">
+    <iframe
+      src="https://adityabot.ccbp.tech" // Replace with the actual bot URL
+      title="RasaSetu ChatBot"
+      className="cropped-iframe"
+    ></iframe>
+  </div>
+</div>
 
         {selectedEmotion && emotionYouTubeMap[selectedEmotion.name] && (
-          <div className="youtube-video">
+          <div className="youtube-video" align:clearInterval>
             <h3>🎥 Helpful Video for {selectedEmotion.name}</h3>
             <iframe
               width="560"
