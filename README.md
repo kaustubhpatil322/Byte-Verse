@@ -1,3 +1,18 @@
+<h1 align="center">🚀 This Repository Has Been Migrated</h1>
+
+<p align="center">
+  <a href="https://github.com/Aditya948351/RasaSetu" target="_blank">
+    <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" width="150" />
+  </a>
+</p>
+
+<h2 align="center">
+  👉 <a href="https://github.com/Aditya948351/RasaSetu" target="_blank">Click Here to Visit the New Repository</a>
+</h2>
+
+<p align="center">All future development and updates will be made in the new repository. Please star and follow for the latest changes!</p>
+
+
 <h1 align="center">🌉 RasaSetu – The Bridge of Emotions </h1>
 
 <h3 align="center"><em>Experience your emotions. Reflect. Heal. With content that truly connects.</em></h3>
